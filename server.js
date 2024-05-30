@@ -34,16 +34,18 @@ app.get('/blog', (req, res) => {
 
 app.use(errorMiddleware);
 
-// mongoose.set("strictQuery", false)
-// mongoose.
-// connect('mongodb+srv://admin:12345678Admin@devtaminapi.zpncstm.mongodb.net/Node-API?retryWrites=true&w=majority')
-// .then(() => {
-//     console.log('connected to MongoDB')
-//     app.listen(PORT, ()=> {
-//         console.log(`Node API app is running on port ${PORT}`)
-//     });
-// }).catch((error) => {
-//     console.log(error)
-// })
+mongoose.set("strictQuery", false)
 
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+console.log(`Node API app is  running on url ${MONGO_URL}`)
+
+mongoose.connect(MONGO_URL)
+.then(() => {
+    console.log('connected to MongoDB')
+    app.listen(PORT, ()=> {
+        console.log(`Node API app is running on port ${PORT}`)
+    });
+}).catch((error) => {
+    console.log(error)
+})
+
+// app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
